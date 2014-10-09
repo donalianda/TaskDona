@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MoviesDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MoviesDbModelStoreContainer">
+          <EntitySet Name="MST_DIRECTOR" EntityType="MoviesDbModel.Store.MST_DIRECTOR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MST_MOVIE" EntityType="MoviesDbModel.Store.MST_MOVIE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TRANSACTION_MOVIE" EntityType="MoviesDbModel.Store.TRANSACTION_MOVIE" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="MST_DIRECTOR">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MST_MOVIE">
+          <Key>
+            <PropertyRef Name="ID_Movie" />
+          </Key>
+          <Property Name="ID_Movie" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeRelease" Type="date" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+          <Property Name="ID_Director" Type="int" />
+        </EntityType>
+        <EntityType Name="TRANSACTION_MOVIE">
+          <Key>
+            <PropertyRef Name="ID_ListMovie" />
+          </Key>
+          <Property Name="ID_ListMovie" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Director" Type="int" />
+          <Property Name="ID_Movie" Type="int" />
+        </EntityType>
+        <Function Name="SP_JOIN_MOVIE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MoviesDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MoviesDbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="MST_DIRECTOR" EntityType="MoviesDbModel.MST_DIRECTOR" />
+          <EntitySet Name="MST_MOVIE" EntityType="MoviesDbModel.MST_MOVIE" />
+          <EntitySet Name="TRANSACTION_MOVIE" EntityType="MoviesDbModel.TRANSACTION_MOVIE" />
+          <FunctionImport Name="SP_JOIN_MOVIE" ReturnType="Collection(MoviesDbModel.SP_JOIN_MOVIE_Result)" />
+        </EntityContainer>
+        <EntityType Name="MST_DIRECTOR">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Director" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MST_MOVIE">
+          <Key>
+            <PropertyRef Name="ID_Movie" />
+          </Key>
+          <Property Name="ID_Movie" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TimeRelease" Type="DateTime" Precision="0" />
+          <Property Name="Genre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Type="Int32" Name="ID_Director" />
+        </EntityType>
+        <EntityType Name="TRANSACTION_MOVIE">
+          <Key>
+            <PropertyRef Name="ID_ListMovie" />
+          </Key>
+          <Property Name="ID_ListMovie" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Director" Type="Int32" />
+          <Property Name="ID_Movie" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="ComplexType1" />
+        <ComplexType Name="SP_JOIN_MOVIE_Result">
+          <Property Type="Int32" Name="ID_Movie" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="TimeRelease" Nullable="true" />
+          <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="Int32" Name="ID_Director" Nullable="true" />
+          <Property Type="String" Name="DirectorName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MoviesDbModelStoreContainer" CdmEntityContainer="MoviesDbEntities">
+          <EntitySetMapping Name="MST_DIRECTOR">
+            <EntityTypeMapping TypeName="MoviesDbModel.MST_DIRECTOR">
+              <MappingFragment StoreEntitySet="MST_DIRECTOR">
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_MOVIE">
+            <EntityTypeMapping TypeName="MoviesDbModel.MST_MOVIE">
+              <MappingFragment StoreEntitySet="MST_MOVIE">
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TimeRelease" ColumnName="TimeRelease" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTION_MOVIE">
+            <EntityTypeMapping TypeName="MoviesDbModel.TRANSACTION_MOVIE">
+              <MappingFragment StoreEntitySet="TRANSACTION_MOVIE">
+                <ScalarProperty Name="ID_ListMovie" ColumnName="ID_ListMovie" />
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_JOIN_MOVIE" FunctionName="MoviesDbModel.Store.SP_JOIN_MOVIE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoviesDbModel.SP_JOIN_MOVIE_Result">
+                <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TimeRelease" ColumnName="TimeRelease" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MusicListApp.SP_ALBUM_BY_TITLE_Result>
+@using MusicListApp;
+
+@{
+    ViewBag.Title = "SearchAlbumByTitle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchAlbumByTitle</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+     @using (Html.BeginForm()){
+        <p> Title: @Html.TextBox("searchStringTitle")<br/>
+        <input type="submit"value="Filter"/></p>
+    }
+</p>
+<table>
+    <tr>
+        <th>
+            Action
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+           Artist
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+           Price
+        </th>
+        <th>
+            Release
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (SP_ALBUM_BY_TITLE_Result item in ViewBag.AlbumByTitle)
+{ 
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {id=item.AlbumID /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new {id=item.AlbumID /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new {id=item.AlbumID /* id=item.PrimaryKey */ })
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArtistName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Release)
+        </td>
+        
+    </tr>
+}
+
+</table>

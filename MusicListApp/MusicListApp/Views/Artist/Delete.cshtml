@@ -1,0 +1,34 @@
+﻿@model MusicListApp.MST_ARTIST
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>MST_ARTIST</legend>
+
+    @Html.HiddenFor(model => model.ArtistID)
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ArtistID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArtistID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ArtistName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArtistName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

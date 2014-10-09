@@ -1,0 +1,58 @@
+﻿@model MusicListApp.TRANSACT_ALBUM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TRANSACT_ALBUM</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AlbumID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AlbumID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GenreID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GenreID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ArtistID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArtistID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Release)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Release)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {id=Model.AlbumID /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

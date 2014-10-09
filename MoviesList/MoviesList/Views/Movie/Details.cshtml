@@ -1,0 +1,52 @@
+﻿@model MoviesList.MST_MOVIE
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>MST_MOVIE</legend>
+
+    @Html.HiddenFor(model => model.ID_Movie)
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ID_Director)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ID_Director)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeRelease)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeRelease)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Genre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Genre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

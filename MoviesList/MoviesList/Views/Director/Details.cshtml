@@ -1,0 +1,29 @@
+﻿@model MoviesList.MST_DIRECTOR
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>MST_DIRECTOR</legend>
+
+    @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.ID_Director)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ID_Director)
+    </div>*@
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Director)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Director)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MoviesDbModelStoreContainer" CdmEntityContainer="MoviesDbEntities">
+    <EntitySetMapping Name="MST_DIRECTOR">
+      <EntityTypeMapping TypeName="MoviesDbModel.MST_DIRECTOR">
+        <MappingFragment StoreEntitySet="MST_DIRECTOR">
+          <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MST_MOVIE">
+      <EntityTypeMapping TypeName="MoviesDbModel.MST_MOVIE">
+        <MappingFragment StoreEntitySet="MST_MOVIE">
+          <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+          <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TimeRelease" ColumnName="TimeRelease" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTION_MOVIE">
+      <EntityTypeMapping TypeName="MoviesDbModel.TRANSACTION_MOVIE">
+        <MappingFragment StoreEntitySet="TRANSACTION_MOVIE">
+          <ScalarProperty Name="ID_ListMovie" ColumnName="ID_ListMovie" />
+          <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+          <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_JOIN_MOVIE" FunctionName="MoviesDbModel.Store.SP_JOIN_MOVIE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MoviesDbModel.SP_JOIN_MOVIE_Result">
+          <ScalarProperty Name="ID_Movie" ColumnName="ID_Movie" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TimeRelease" ColumnName="TimeRelease" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+          <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

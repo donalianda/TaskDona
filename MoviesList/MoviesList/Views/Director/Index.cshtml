@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MoviesList.MST_DIRECTOR>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3><i>Data Director</i></h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ID_Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>*@
+        <th>Action</th>
+        <th>
+            Director
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {id=item.ID_Director /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new {id=item.ID_Director /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new {id=item.ID_Director /* id=item.PrimaryKey */ })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        
+    </tr>
+}
+
+</table>

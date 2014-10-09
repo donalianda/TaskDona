@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlbumDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AlbumDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="MST_ARTIST" EntityType="AlbumDBModel.MST_ARTIST" />
+    <EntitySet Name="MST_GENRE" EntityType="AlbumDBModel.MST_GENRE" />
+    <EntitySet Name="TRANSACT_ALBUM" EntityType="AlbumDBModel.TRANSACT_ALBUM" />
+    <FunctionImport Name="SP_ALBUM" ReturnType="Collection(AlbumDBModel.SP_ALBUM_Result)" />
+    <EntitySet Name="TBL_LOGIN" EntityType="AlbumDBModel.TBL_LOGIN" />
+    <FunctionImport Name="SP_ALBUM_BY_TITLE" ReturnType="Collection(AlbumDBModel.SP_ALBUM_BY_TITLE_Result)">
+      <Parameter Name="title" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="MST_ARTIST">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Name="ArtistID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MST_GENRE">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Genre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TRANSACT_ALBUM">
+    <Key>
+      <PropertyRef Name="AlbumID" />
+    </Key>
+    <Property Name="AlbumID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="GenreID" Type="Int32" />
+    <Property Name="ArtistID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Release" Type="DateTime" Precision="0" />
+  </EntityType>
+  <ComplexType Name="SP_ALBUM_Result">
+    <Property Type="Int32" Name="AlbumID" Nullable="false" />
+    <Property Type="Int32" Name="GenreID" Nullable="true" />
+    <Property Type="Int32" Name="ArtistID" Nullable="true" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Price" Nullable="true" />
+    <Property Type="DateTime" Name="Release" Nullable="true" />
+    <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ArtistName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="TBL_LOGIN">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FullName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HakAkses" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="SP_ALBUM_BY_TITLE_Result">
+    <Property Type="Int32" Name="AlbumID" Nullable="false" />
+    <Property Type="Int32" Name="GenreID" Nullable="true" />
+    <Property Type="Int32" Name="ArtistID" Nullable="true" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Price" Nullable="true" />
+    <Property Type="DateTime" Name="Release" Nullable="true" />
+    <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ArtistName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

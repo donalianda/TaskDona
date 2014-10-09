@@ -1,0 +1,58 @@
+﻿@using MoviesList;
+
+@{
+    ViewBag.Title = "IndexJoin";
+}
+
+<h2>IndexJoin</h2>
+
+<table>
+    <tr>
+        <th>Action</th>
+        <th>
+            Director
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Release
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Price
+        </th>
+        
+    </tr>
+
+    @foreach (SP_JOIN_MOVIE_Result item in ViewBag.CallJoin)
+    {
+         <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Movie /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new {id=item.ID_Movie /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new {id=item.ID_Movie /* id=item.PrimaryKey */ })
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DirectorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeRelease)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        
+    </tr>
+    }
+
+</table>

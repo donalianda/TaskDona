@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MusicListApp.TRANSACT_ALBUM>
+
+@{
+    ViewBag.Title = "SearchIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm()){
+        <p> Title: @Html.TextBox("SearchString")<br/>
+        <input type="submit"value="Filter"/></p>
+    }
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtistID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Release)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlbumID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArtistID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Release)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AlbumID /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

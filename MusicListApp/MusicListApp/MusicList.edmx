@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AlbumDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="AlbumDBModelStoreContainer">
+          <EntitySet Name="MST_ARTIST" EntityType="AlbumDBModel.Store.MST_ARTIST" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MST_GENRE" EntityType="AlbumDBModel.Store.MST_GENRE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TBL_LOGIN" EntityType="AlbumDBModel.Store.TBL_LOGIN" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TRANSACT_ALBUM" EntityType="AlbumDBModel.Store.TRANSACT_ALBUM" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="MST_ARTIST">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MST_GENRE">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_LOGIN">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="HakAkses" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TRANSACT_ALBUM">
+          <Key>
+            <PropertyRef Name="AlbumID" />
+          </Key>
+          <Property Name="AlbumID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GenreID" Type="int" />
+          <Property Name="ArtistID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Release" Type="date" />
+        </EntityType>
+        <Function Name="SP_ALBUM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_ALBUM_BY_TITLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlbumDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AlbumDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="MST_ARTIST" EntityType="AlbumDBModel.MST_ARTIST" />
+          <EntitySet Name="MST_GENRE" EntityType="AlbumDBModel.MST_GENRE" />
+          <EntitySet Name="TRANSACT_ALBUM" EntityType="AlbumDBModel.TRANSACT_ALBUM" />
+          <FunctionImport Name="SP_ALBUM" ReturnType="Collection(AlbumDBModel.SP_ALBUM_Result)" />
+          <EntitySet Name="TBL_LOGIN" EntityType="AlbumDBModel.TBL_LOGIN" />
+          <FunctionImport Name="SP_ALBUM_BY_TITLE" ReturnType="Collection(AlbumDBModel.SP_ALBUM_BY_TITLE_Result)">
+          <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="MST_ARTIST">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MST_GENRE">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TRANSACT_ALBUM">
+          <Key>
+            <PropertyRef Name="AlbumID" />
+          </Key>
+          <Property Name="AlbumID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GenreID" Type="Int32" />
+          <Property Name="ArtistID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Release" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="SP_ALBUM_Result">
+          <Property Type="Int32" Name="AlbumID" Nullable="false" />
+          <Property Type="Int32" Name="GenreID" Nullable="true" />
+          <Property Type="Int32" Name="ArtistID" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="DateTime" Name="Release" Nullable="true" />
+          <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ArtistName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="TBL_LOGIN">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FullName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HakAkses" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="SP_ALBUM_BY_TITLE_Result">
+          <Property Type="Int32" Name="AlbumID" Nullable="false" />
+          <Property Type="Int32" Name="GenreID" Nullable="true" />
+          <Property Type="Int32" Name="ArtistID" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="DateTime" Name="Release" Nullable="true" />
+          <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ArtistName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlbumDBModelStoreContainer" CdmEntityContainer="AlbumDBEntities">
+          <EntitySetMapping Name="MST_ARTIST">
+            <EntityTypeMapping TypeName="AlbumDBModel.MST_ARTIST">
+              <MappingFragment StoreEntitySet="MST_ARTIST">
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_GENRE">
+            <EntityTypeMapping TypeName="AlbumDBModel.MST_GENRE">
+              <MappingFragment StoreEntitySet="MST_GENRE">
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACT_ALBUM">
+            <EntityTypeMapping TypeName="AlbumDBModel.TRANSACT_ALBUM">
+              <MappingFragment StoreEntitySet="TRANSACT_ALBUM">
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Release" ColumnName="Release" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ALBUM" FunctionName="AlbumDBModel.Store.SP_ALBUM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AlbumDBModel.SP_ALBUM_Result">
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Release" ColumnName="Release" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TBL_LOGIN">
+            <EntityTypeMapping TypeName="AlbumDBModel.TBL_LOGIN">
+              <MappingFragment StoreEntitySet="TBL_LOGIN">
+                <ScalarProperty Name="HakAkses" ColumnName="HakAkses" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ALBUM_BY_TITLE" FunctionName="AlbumDBModel.Store.SP_ALBUM_BY_TITLE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AlbumDBModel.SP_ALBUM_BY_TITLE_Result">
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Release" ColumnName="Release" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

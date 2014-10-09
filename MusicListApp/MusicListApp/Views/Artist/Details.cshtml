@@ -1,0 +1,32 @@
+﻿@model MusicListApp.MST_ARTIST
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>MST_ARTIST</legend>
+
+    @Html.HiddenFor(model => model.ArtistID)
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ArtistID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArtistID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ArtistName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArtistName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {id=Model.ArtistID /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

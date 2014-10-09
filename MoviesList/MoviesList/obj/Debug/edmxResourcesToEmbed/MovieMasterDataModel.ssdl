@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoviesDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MoviesDbModelStoreContainer">
+    <EntitySet Name="MST_DIRECTOR" EntityType="MoviesDbModel.Store.MST_DIRECTOR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MST_MOVIE" EntityType="MoviesDbModel.Store.MST_MOVIE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TRANSACTION_MOVIE" EntityType="MoviesDbModel.Store.TRANSACTION_MOVIE" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="MST_DIRECTOR">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MST_MOVIE">
+    <Key>
+      <PropertyRef Name="ID_Movie" />
+    </Key>
+    <Property Name="ID_Movie" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeRelease" Type="date" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="float" />
+    <Property Name="ID_Director" Type="int" />
+  </EntityType>
+  <EntityType Name="TRANSACTION_MOVIE">
+    <Key>
+      <PropertyRef Name="ID_ListMovie" />
+    </Key>
+    <Property Name="ID_ListMovie" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Director" Type="int" />
+    <Property Name="ID_Movie" Type="int" />
+  </EntityType>
+  <Function Name="SP_JOIN_MOVIE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

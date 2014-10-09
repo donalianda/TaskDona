@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoviesDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MoviesDbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="MST_DIRECTOR" EntityType="MoviesDbModel.MST_DIRECTOR" />
+    <EntitySet Name="MST_MOVIE" EntityType="MoviesDbModel.MST_MOVIE" />
+    <EntitySet Name="TRANSACTION_MOVIE" EntityType="MoviesDbModel.TRANSACTION_MOVIE" />
+    <FunctionImport Name="SP_JOIN_MOVIE" ReturnType="Collection(MoviesDbModel.SP_JOIN_MOVIE_Result)" />
+  </EntityContainer>
+  <EntityType Name="MST_DIRECTOR">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Director" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MST_MOVIE">
+    <Key>
+      <PropertyRef Name="ID_Movie" />
+    </Key>
+    <Property Name="ID_Movie" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TimeRelease" Type="DateTime" Precision="0" />
+    <Property Name="Genre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Price" Type="Double" />
+    <Property Type="Int32" Name="ID_Director" />
+  </EntityType>
+  <EntityType Name="TRANSACTION_MOVIE">
+    <Key>
+      <PropertyRef Name="ID_ListMovie" />
+    </Key>
+    <Property Name="ID_ListMovie" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Director" Type="Int32" />
+    <Property Name="ID_Movie" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="ComplexType1" />
+  <ComplexType Name="SP_JOIN_MOVIE_Result">
+    <Property Type="Int32" Name="ID_Movie" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="TimeRelease" Nullable="true" />
+    <Property Type="String" Name="Genre" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Price" Nullable="true" />
+    <Property Type="Int32" Name="ID_Director" Nullable="true" />
+    <Property Type="String" Name="DirectorName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

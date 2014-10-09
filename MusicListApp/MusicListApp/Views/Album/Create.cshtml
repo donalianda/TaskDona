@@ -1,0 +1,78 @@
+﻿@model MusicListApp.TRANSACT_ALBUM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TRANSACT_ALBUM</legend>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.AlbumID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AlbumID)
+            @Html.ValidationMessageFor(model => model.AlbumID)
+        </div>*@
+
+        <div class="editor-label">
+            Genre
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.GenreID)*@
+            @Html.DropDownList("GenreID", string.Empty)
+            @Html.ValidationMessageFor(model => model.GenreID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ArtistID)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.ArtistID)*@
+            @Html.DropDownList("ArtistID",string.Empty)
+            @Html.ValidationMessageFor(model => model.ArtistID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Release)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Release)
+            @Html.ValidationMessageFor(model => model.Release)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

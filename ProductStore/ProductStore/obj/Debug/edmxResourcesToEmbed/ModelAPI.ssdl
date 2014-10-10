@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlbumDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AlbumDBModelStoreContainer">
+    <EntitySet Name="MST_ARTIST" EntityType="AlbumDBModel.Store.MST_ARTIST" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MST_GENRE" EntityType="AlbumDBModel.Store.MST_GENRE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TBL_LOGIN" EntityType="AlbumDBModel.Store.TBL_LOGIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TRANSACT_ALBUM" EntityType="AlbumDBModel.Store.TRANSACT_ALBUM" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="MST_ARTIST">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Name="ArtistID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MST_GENRE">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_LOGIN">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="HakAkses" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TRANSACT_ALBUM">
+    <Key>
+      <PropertyRef Name="AlbumID" />
+    </Key>
+    <Property Name="AlbumID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GenreID" Type="int" />
+    <Property Name="ArtistID" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Release" Type="date" />
+  </EntityType>
+  <Function Name="SP_ALBUM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_ALBUM_BY_TITLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+  </Function>
+</Schema>

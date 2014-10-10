@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlbumDBModelStoreContainer" CdmEntityContainer="AlbumDBEntities">
+    <EntitySetMapping Name="MST_ARTIST">
+      <EntityTypeMapping TypeName="AlbumDBModel.MST_ARTIST">
+        <MappingFragment StoreEntitySet="MST_ARTIST">
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MST_GENRE">
+      <EntityTypeMapping TypeName="AlbumDBModel.MST_GENRE">
+        <MappingFragment StoreEntitySet="MST_GENRE">
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_LOGIN">
+      <EntityTypeMapping TypeName="AlbumDBModel.TBL_LOGIN">
+        <MappingFragment StoreEntitySet="TBL_LOGIN">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="HakAkses" ColumnName="HakAkses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACT_ALBUM">
+      <EntityTypeMapping TypeName="AlbumDBModel.TRANSACT_ALBUM">
+        <MappingFragment StoreEntitySet="TRANSACT_ALBUM">
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Release" ColumnName="Release" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ALBUM" FunctionName="AlbumDBModel.Store.SP_ALBUM">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AlbumDBModel.SP_ALBUM_Result">
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Release" ColumnName="Release" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ALBUM_BY_TITLE" FunctionName="AlbumDBModel.Store.SP_ALBUM_BY_TITLE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AlbumDBModel.SP_ALBUM_BY_TITLE_Result">
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Release" ColumnName="Release" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
